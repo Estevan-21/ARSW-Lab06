@@ -56,6 +56,7 @@ var app = (function () {
         },
 
         publishPoint: function(px,py){
+            stompClient.send("/app/paint", {}, JSON.stringify({x:$("#x").val(),y:$("#y").val()}));
             var pt=new Point(px,py);
             console.info("publishing point at "+pt);
             addPointToCanvas(pt);
