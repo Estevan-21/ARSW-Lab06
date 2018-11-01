@@ -13,7 +13,7 @@ public class CollabPaintController {
     @MessageMapping("/paint")
     @SendTo("/topic/newpoint")
     public Point greeting(Point point) throws Exception {     
-        System.out.println("X:"+ point.getX()+" Y:"+point.getY());
+        System.out.println("X:"+ point.getX()+" Y:"+point.getY());        
         return new Point(point.getX(),point.getY());
     }
 
