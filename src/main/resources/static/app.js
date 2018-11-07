@@ -35,11 +35,11 @@ var app = (function () {
         
         //subscribe to /topic/TOPICXX when connections succeed
         stompClient.connect({}, function (frame) {
-            console.log('Connected: ' + frame);
+            //console.log('Connected: ' + frame);
             stompClient.subscribe("/topic/newpoint."+$("#pId").val(), function (eventbody) {
                 var punto1=JSON.parse(eventbody.body);
                 addPointToCanvas(punto1);         
-                console.log("ID suscripcion: "+$("#pId").val());
+                //console.log("ID suscripcion: "+$("#pId").val());
             });
         });
 
@@ -58,10 +58,10 @@ var app = (function () {
 
         publishPoint: function(px,py){
             //stompClient.send("/app/paint", {}, JSON.stringify({x:$("#x").val(),y:$("#y").val()}));
-            stompClient.send("/topic/newpoint."+$("#pId").val(), {}, JSON.stringify({x:$("#x").val(),y:$("#y").val()}));
+            stompClient.send("/app/newpoint."+$("#pId").val(), {}, JSON.stringify({x:$("#x").val(),y:$("#y").val()}));            
             var pt=new Point(px,py);
-            console.log("ID topico: "+$("#pId").val());
-            console.info("publishing point at "+pt);
+            //console.log("ID topico: "+$("#pId").val());
+            //console.info("publishing point at "+pt);
             //addPointToCanvas(pt);
 
             //publicar el evento
@@ -72,7 +72,7 @@ var app = (function () {
                 stompClient.disconnect();
             }
             setConnected(false);
-            console.log("Disconnected");
+            //console.log("Disconnected");
         }
     };
 
